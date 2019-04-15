@@ -7,7 +7,30 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span></button>
 				<a class="navbar-brand" href="#"><span>Management </span>Artis</a>
-
+				<div class="navbar-brand nav navbar-top-links navbar-right" href="#">
+				
+					<span>Position : </span>
+					<?php
+						if (isset($_SESSION["user_logged_in"]))
+						{
+							echo $_SESSION["user_position"];
+						}	
+					?>
+					
+				</div>
+				<div class="navbar-brand nav navbar-top-links navbar-right" href="#">
+				
+					<span>Username : </span>
+					<?php
+						if (isset($_SESSION["user_logged_in"]))
+						{
+							echo $_SESSION["user_name"];
+						}	
+					?>
+					
+				</div>
+				
+				
 			</div>
 		</div><!-- /.container-fluid -->
 	</nav>
