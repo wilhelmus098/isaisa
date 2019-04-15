@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<?php
+	include 'conn.php';
+?>
 <html>
 <head>
 	<meta charset="utf-8">
@@ -34,34 +37,42 @@
 		
 		<div class="row">
 			<div class="col-lg-12">
-				
-				
-				
+								
 				<div class="panel panel-default">
 					<div class="panel-body">
 						<div class="col-md-6">
-							<form role="form">
-							
+							<form role="form" method="POST" action="controllers/contract.php">
 									<div class="form-group">
-										<label>Contract User </label>										
-										<button type="button"  class="btn btn-primary">+</button>
-
-										<input class="form-control" placeholder="" readonly>
+										<label>Contract User</label>
+										<select class="form-control" name="contract_user_id">
+											<?php
+												$sql = "select * from users where user_position = 'Actress'";
+												$result = mysqli_query($mysqli, $sql);
+												if ($result->num_rows > 0) {
+													// output data of each row
+													while($row = $result->fetch_assoc()) {
+														echo "<option value=\"".$row["iduser"]."\">".$row["user_name"]."</option>";
+													}
+												}
+											?>
+											
+										</select>
 									</div>
+									
 									<div class="form-group">
 										<label>Contract Start</label>
-										<input type="date" class="form-control" placeholder="">
+										<input type="date" class="form-control" name="contract_start" placeholder="">
 									</div>
 									<div class="form-group">
 										<label>Contract End</label>
-										<input type="date" class="form-control" placeholder="">
+										<input type="date" class="form-control" name="contract_end" placeholder="">
 									</div>
 
 									<div class="form-group">
 										<label>Contract Value</label>
-										<input type="number" class="form-control" placeholder="">
+										<input type="number" class="form-control" name="contract_value" placeholder="">
 									</div>
-									<button type="submit" class="btn btn-primary">Create Contract</button>
+									<button type="submit" class="btn btn-primary" name="create_contract" >Create Contract</button>
 							</form>
 						</div>
 					</div>
