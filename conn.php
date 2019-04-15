@@ -1,8 +1,8 @@
 <?php
 
-$srvName = "wilhelmmozes.site"; //SERVER ADDRESS OR IP SERVER
-$srvUser = "bickdig"; // USER ID TO DATABASE
-$srvPWD = "12345678"; //PWD TO ACCESS DATABASE
+$srvName = "localhost"; //SERVER ADDRESS OR IP SERVER
+$srvUser = "root"; // USER ID TO DATABASE
+$srvPWD = ""; //PWD TO ACCESS DATABASE
 $dbName = "artis"; //DATABASE NAME
 
 $mysqli = mysqli_connect($srvName,$srvUser,$srvPWD,$dbName);
