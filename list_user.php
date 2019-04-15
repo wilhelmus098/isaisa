@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<?php
+	include 'conn.php';
+?>
 <html>
 <head>
 	<meta charset="utf-8">
@@ -46,11 +49,18 @@
 								  </tr>
 								</thead>
 								<tbody>
-								  <tr>
-									<td></td>
-									<td></td>
-									<td></td>
-								  </tr>
+								<?php
+									$sql = "select * from users";
+									$result = mysqli_query($mysqli, $sql);
+										// output data of each row
+								?>	
+								<?php while($row = $result->fetch_assoc()) { ?>
+									<tr>
+										<td><?=$row["user_name"]?></td>
+										<td><?=$row["user_position"]?></td>
+										<td></td>
+									</tr>
+								<?php } ?>
 								  
 								</tbody>
 						  </table>

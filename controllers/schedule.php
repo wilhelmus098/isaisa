@@ -14,7 +14,7 @@ function add($scheduleUserId,$scheduleStart,$scheduleEnd,$scheduleLocation,$sche
     $sql = "INSERT INTO schedules VALUE(NULL, '" . $scheduleStart . "','" . $scheduleEnd . "','" . $scheduleLocation . "','" . $scheduleDesc . "','" . $scheduleUserId . "')";
     if (mysqli_query($mysqli, $sql)) 
     {
-        echo "New record created successfully";
+        echo "New record created successfully <a href=\"../list_schedule.php\">back to list schedule</a>";
     }
     else
     {

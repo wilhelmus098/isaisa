@@ -15,7 +15,7 @@ function addUser($name,$pwd,$pos)
     $sql = "INSERT INTO users VALUE(NULL, '" . $name . "','" . $pwd . "','" . $pos . "')";
     if (mysqli_query($mysqli, $sql)) 
     {
-        echo "New record created successfully";
+        echo "New record created successfully <a href=\"../list_user.php\">back to list user</a>";
     }
     else
     {

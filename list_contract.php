@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<?php
+	include 'conn.php';
+?>
 <html>
 <head>
 	<meta charset="utf-8">
@@ -47,12 +50,19 @@
 								  </tr>
 								</thead>
 								<tbody>
-								  <tr>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-								  </tr>
+								<?php
+									$sql = "select contracts.*, users.user_name as contract_username from contracts inner join users on contracts.contract_iduser = users.iduser";
+									$result = mysqli_query($mysqli, $sql);
+										// output data of each row
+								?>	
+								<?php while($row = $result->fetch_assoc()) { ?>
+									<tr>
+										<td><?=$row["contract_username"]?></td>
+										<td><?=$row["contract_start"]?></td>
+										<td><?=$row["contract_end"]?></td>
+										<td><?=$row["contract_value"]?></td>
+									</tr>
+								<?php } ?>
 								  
 								</tbody>
 						  </table>

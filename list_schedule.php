@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<?php
+	include 'conn.php';
+?>
 <html>
 <head>
 	<meta charset="utf-8">
@@ -48,14 +51,20 @@
 								  </tr>
 								</thead>
 								<tbody>
-								  <tr>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-								  </tr>
-								  
+								<?php
+									$sql = "select schedules.*, users.user_name as schedule_username from schedules inner join users on schedules.schedule_iduser = users.iduser";
+									$result = mysqli_query($mysqli, $sql);
+										// output data of each row
+								?>	
+								<?php while($row = $result->fetch_assoc()) { ?>
+									<tr>
+										<td><?=$row["schedule_username"]?></td>
+										<td><?=$row["schedule_start"]?></td>
+										<td><?=$row["schedule_end"]?></td>
+										<td><?=$row["schedule_location"]?></td>
+										<td><?=$row["schedule_desc"]?></td>										
+									</tr>
+								<?php } ?>
 								</tbody>
 						  </table>
 						</div>

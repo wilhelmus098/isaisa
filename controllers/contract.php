@@ -14,7 +14,7 @@ function add($contractUserId,$contractStart,$contractEnd,$contractValue)
     $sql = "INSERT INTO contracts VALUE(NULL, '" . $contractUserId . "','" . $contractStart . "','" . $contractEnd . "','" . $contractValue . "')";
     if (mysqli_query($mysqli, $sql)) 
     {
-        echo "New record created successfully";
+        echo "New record created successfully <a href=\"../list_contract.php\">back to list contracts</a>";
     }
     else
     {
