@@ -9,20 +9,20 @@ if(isset($_POST['create_schedule']))
 }
 
 function add($scheduleUserId,$scheduleStart,$scheduleEnd,$scheduleLocation,$scheduleDesc)
-  {
-    global $mysqli;
-    $sql = "INSERT INTO schedules VALUE(NULL, '" . $scheduleStart . "','" . $scheduleEnd . "','" . $scheduleLocation . "','" . $scheduleDesc . "','" . $scheduleUserId . "')";
-    if (mysqli_query($mysqli, $sql)) 
-    {
-        echo "New record created successfully <a href=\"../list_schedule.php\">back to list schedule</a>";
-    }
-    else
-    {
-        echo "Error: " . $sql . "<br>" . mysqli_error($mysqli);
-    }
+{
+	global $mysqli;
+	$sql = "INSERT INTO schedules VALUE(NULL, '" . $scheduleStart . "','" . $scheduleEnd . "','" . $scheduleLocation . "','" . $scheduleDesc . "','" . $scheduleUserId . "')";
+	if (mysqli_query($mysqli, $sql)) 
+	{
+		echo "New record created successfully <a href=\"../list_schedule.php\">back to list schedule</a>";
+	}
+	else
+	{
+		echo "Error: " . $sql . "<br>" . mysqli_error($mysqli);
+	}
 
-    mysqli_close($mysqli);
-  }
+	mysqli_close($mysqli);
+}
 
 function update()
 {
