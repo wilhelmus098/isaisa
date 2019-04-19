@@ -21,8 +21,20 @@
 	<![endif]-->
 </head>
 <body>
-	<?php
+<?php
+	if($_SESSION['user_position'] == "Actress")
+	{
+		require_once('sidemenuartis.php');
+	}
+	if($_SESSION['user_position'] == "Manager")
+	{
+		require_once('sidemenumanager.php');
+	}
+	if($_SESSION['user_position'] == "Admin")
+	{
 		require_once('sidemenu.php');
+	}
+		
 	?>
 	
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
