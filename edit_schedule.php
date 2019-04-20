@@ -2,6 +2,8 @@
 <?php
 	include 'conn.php';
 	include 'checksession.php';
+	require('MagicCrypt.php');
+	use org\magiclen\magiccrypt\MagicCrypt;
 ?>
 <html>
 <head>
@@ -69,12 +71,17 @@
 							if ($result->num_rows > 0)
 							{
 								while($row = $result->fetch_assoc())
-								{
+								{	
                                     $time = strtotime($row["schedule_start"]);
                                     $scheduleStart = date('Y-m-d\Th:i',$time);
                                     $time1 = strtotime($row["schedule_end"]);
                                     $scheduleEnd = date('Y-m-d\Th:i',$time1);
-                                    $scheduleLoc = $row["schedule_location"];
+									
+									$cipherloc = $row["schedule_location"];
+									$mc = new MagicCrypt('isa', 256);
+									$plainloc = $mc->decrypt($cipherloc);
+
+									$scheduleLoc = $plainloc;
                                     $scheduleDesc = $row["schedule_desc"];
                                     $scheduleIduser = $row["user_name"];
 								}

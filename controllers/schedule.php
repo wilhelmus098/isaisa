@@ -1,11 +1,15 @@
 <?php
-	include '../conn.php';
+include '../conn.php';
+require('../MagicCrypt.php');
+use org\magiclen\magiccrypt\MagicCrypt;
 
 if(isset($_POST['create_schedule']))
 {
+    $plainloc = $_POST["schedule_location"];
+    $mc = new MagicCrypt('isa', 256);
+    $cipherloc = $mc->encrypt($plainloc);
+    add($_POST["schedule_user_id"],$_POST["schedule_start"],$_POST["schedule_end"],$cipherloc,$_POST["schedule_desc"]);
 
-    add($_POST["schedule_user_id"],$_POST["schedule_start"],$_POST["schedule_end"],$_POST["schedule_location"],$_POST["schedule_desc"]);
-   
 }
 
 function add($scheduleUserId,$scheduleStart,$scheduleEnd,$scheduleLocation,$scheduleDesc)

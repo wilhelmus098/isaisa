@@ -2,6 +2,8 @@
 <?php
 	include 'conn.php';
 	include 'checksession.php';
+	require('MagicCrypt.php');
+	use org\magiclen\magiccrypt\MagicCrypt;
 ?>
 <html>
 <head>
@@ -69,12 +71,16 @@
 									$result = mysqli_query($mysqli, $sql);
 										// output data of each row
 								?>	
-								<?php while($row = $result->fetch_assoc()) { ?>
+								<?php while($row = $result->fetch_assoc()) { 
+									$cipherloc = $row["schedule_location"];
+									$mc = new MagicCrypt('isa', 256);
+									$plainloc = $mc->decrypt($cipherloc);
+									?>
 									<tr>
 										<td><a href="http://localhost:8888/isaisa/edit_schedule.php?idschedule=<?=$row["idschedule"]?>"><?=$row["schedule_username"]?></a></td>
 										<td><?=$row["schedule_start"]?></td>
 										<td><?=$row["schedule_end"]?></td>
-										<td><?=$row["schedule_location"]?></td>
+										<td><?=$plainloc?></td>
 										<td><?=$row["schedule_desc"]?></td>										
 									</tr>
 								<?php } ?>
