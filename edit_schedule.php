@@ -117,6 +117,7 @@
 									</div>
 									
 									<button type="submit" class="btn btn-primary" name="edit_schedule">Update Schedule</button>
+									<button type="submit" class="btn btn-primary" name="delete_schedule">Delete Schedule</button>
 							</form>
 						</div>
 					</div>

@@ -20,6 +20,11 @@ if(isset($_POST['edit_schedule']))
     update($_POST["schedule_id"],$_POST["schedule_start"],$_POST["schedule_end"],$cipherloc,$_POST["schedule_desc"],$_POST["schedule_user"]);
 }
 
+if(isset($_POST['delete_schedule']))
+{
+    delete($_POST["schedule_id"]);
+}
+
 function add($scheduleUserId,$scheduleStart,$scheduleEnd,$scheduleLocation,$scheduleDesc)
 {
 	global $mysqli;
@@ -51,4 +56,18 @@ function update($scheduleId,$scheduleStart,$scheduleEnd,$scheduleLoc,$scheduleDe
     mysqli_close($mysqli);
 }
 
+function delete($scheduleId)
+{
+    global $mysqli;
+    $sql = "DELETE FROM schedules WHERE idschedule = '" . $scheduleId . "'";
+    if (mysqli_query($mysqli, $sql))
+    {
+        echo "Successfully deleted schedule on schedule id " . $scheduleId;
+    }
+    else
+    {
+        echo "Error: " . $sql . "<br>" . mysqli_error($mysqli);
+    }
+    mysqli_close($mysqli);
+}
 ?>
