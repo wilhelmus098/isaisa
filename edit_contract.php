@@ -54,80 +54,46 @@
 				<div class="panel panel-default">
 					<div class="panel-body">
 						<div class="col-md-6">
+						<?php
+							$idcontract = $_GET['idcontract'];
+							$sql = "select * from contracts where idcontract='" . $idcontract . "'";
+							$result = mysqli_query($mysqli, $sql);
+							$contractIduser = "";
+							$contractStart = "";
+							$contractEnd = "";
+							$contractValue = "";
+							if ($result->num_rows > 0)
+							{
+								while($row = $result->fetch_assoc())
+								{
+									$contractIduser = $row["contract_iduser"];
+									$time = strtotime($row["contract_start"]);
+									$contractStart = date('Y-m-d',$time);
+									$time = strtotime($row["contract_end"]);
+									$contractEnd = date('Y-m-d',$time);
+									$contractValue = $row['contract_value'];
+								}
+							}
+						?>
 							<form role="form" method="POST" action="controllers/contract.php">
+							
 									<div class="form-group">
                                         <label>Contract User</label>
-                                        <input class="form-control" placeholder="" name="username" type="username" autofocus="" value="
-                                            <?php
-                                                $idcontract = $_GET['idcontract'];
-                                                $sql = "select * from contracts where idcontract='" . $idcontract . "'";
-                                                $result = mysqli_query($mysqli, $sql);
-                                                if ($result->num_rows > 0)
-                                                {
-                                                    while($row = $result->fetch_assoc())
-                                                    {
-                                                        echo trim($row["contract_iduser"]);
-                                                    }
-                                                }
-                                            ?>
-                                        ">
+                                        <input class="form-control" placeholder="" name="username" type="username" autofocus="" value="<?=$contractIduser?>">
 									</div>
 									
 									<div class="form-group">
 										<label>Contract Start</label>
-                                        <input type="text" class="form-control" name="contract_start" placeholder="" value="
-                                            <?php
-                                                $idcontract = $_GET['idcontract'];
-                                                $sql = "select * from contracts where idcontract='" . $idcontract . "'";
-                                                $result = mysqli_query($mysqli, $sql);
-                                                if ($result->num_rows > 0)
-                                                {
-                                                    while($row = $result->fetch_assoc())
-                                                    {
-                                                        $time = strtotime($row["contract_start"]);
-                                                        $newformat = date('d/m/Y',$time);
-                                                        echo $newformat;
-                                                    }
-                                                }
-                                            ?>
-                                        ">
+                                        <input type="date" class="form-control" name="contract_start" placeholder="" value="<?=$contractStart?>">
 									</div>
 									<div class="form-group">
 										<label>Contract End</label>
-                                        <input type="text" class="form-control" name="contract_end" placeholder="" value="
-                                            <?php
-                                                $idcontract = $_GET['idcontract'];
-                                                $sql = "select * from contracts where idcontract='" . $idcontract . "'";
-                                                $result = mysqli_query($mysqli, $sql);
-                                                if ($result->num_rows > 0)
-                                                {
-                                                    while($row = $result->fetch_assoc())
-                                                    {
-                                                        $time = strtotime($row["contract_end"]);
-                                                        $newformat = date('d/m/Y',$time);
-                                                        echo $newformat;
-                                                    }
-                                                }
-                                            ?>
-                                        ">
+                                        <input type="date" class="form-control" name="contract_end" placeholder="" value="<?=$contractEnd?>">
 									</div>
 
 									<div class="form-group">
 										<label>Contract Value</label>
-                                        <input type="text" class="form-control" name="contract_value" placeholder="" value="
-                                            <?php
-                                                $idcontract = $_GET['idcontract'];
-                                                $sql = "select * from contracts where idcontract='" . $idcontract . "'";
-                                                $result = mysqli_query($mysqli, $sql);
-                                                if ($result->num_rows > 0)
-                                                {
-                                                    while($row = $result->fetch_assoc())
-                                                    {
-                                                        echo $row['contract_value'];
-                                                    }
-                                                }
-                                            ?>
-                                        ">
+                                        <input type="text" class="form-control" name="contract_value" placeholder="" value="<?=$contractValue?>">
 									</div>
 									<button type="submit" class="btn btn-primary" name="create_contract" >Create Contract</button>
 							</form>
