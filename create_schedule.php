@@ -21,7 +21,7 @@
 	<![endif]-->
 </head>
 <body>
-<?php
+	<?php
 	if($_SESSION['user_position'] == "Actress")
 	{
 		require_once('sidemenuartis.php');
