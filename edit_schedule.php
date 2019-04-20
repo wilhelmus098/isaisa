@@ -62,6 +62,7 @@
 							$idschedules = $_GET['idschedule'];
 							$sql = "select idschedule, schedule_start, schedule_end, schedule_location, schedule_desc, schedule_iduser, user_name from schedules, users where idschedule='" . $idschedules . "' AND schedule_iduser = iduser";
 							$result = mysqli_query($mysqli, $sql);
+							$idschedule = "";
                             $scheduleStart = "";
                             $scheduleEnd = "";
                             $scheduleLoc = "";
@@ -72,6 +73,7 @@
 							{
 								while($row = $result->fetch_assoc())
 								{	
+									$idschedule = $row["idschedule"];
                                     $time = strtotime($row["schedule_start"]);
                                     $scheduleStart = date('Y-m-d\Th:i',$time);
                                     $time1 = strtotime($row["schedule_end"]);
@@ -83,14 +85,18 @@
 
 									$scheduleLoc = $plainloc;
                                     $scheduleDesc = $row["schedule_desc"];
-                                    $scheduleIduser = $row["user_name"];
+                                    $scheduleIduser = $row["schedule_iduser"];
 								}
 							}
 						?>
 							<form role="form" method="POST" action="controllers/schedule.php">
 									<div class="form-group">
+										<label>Schedule ID</label>
+                                        <input class="form-control" placeholder="" name="schedule_id" type="text" autofocus="" value="<?=$idschedule?>">
+									</div>
+									<div class="form-group">
 										<label>Schedule User</label>
-                                        <input class="form-control" placeholder="" name="username" type="username" autofocus="" value="<?=$scheduleIduser?>">
+                                        <input class="form-control" placeholder="" name="schedule_user" type="username" autofocus="" value="<?=$scheduleIduser?>">
 									</div>
 									
 									<div class="form-group">
@@ -110,7 +116,7 @@
 										<input type="text" class="form-control" name="schedule_desc" placeholder="" value="<?=$scheduleDesc?>">
 									</div>
 									
-									<button type="submit" class="btn btn-primary" name="create_schedule">Create Schedule</button>
+									<button type="submit" class="btn btn-primary" name="edit_schedule">Update Schedule</button>
 							</form>
 						</div>
 					</div>

@@ -12,6 +12,14 @@ if(isset($_POST['create_schedule']))
 
 }
 
+if(isset($_POST['edit_schedule']))
+{
+    $plainloc = $_POST["schedule_location"];
+    $mc = new MagicCrypt('isa', 256);
+    $cipherloc = $mc->encrypt($plainloc);
+    update($_POST["schedule_id"],$_POST["schedule_start"],$_POST["schedule_end"],$cipherloc,$_POST["schedule_desc"],$_POST["schedule_user"]);
+}
+
 function add($scheduleUserId,$scheduleStart,$scheduleEnd,$scheduleLocation,$scheduleDesc)
 {
 	global $mysqli;
@@ -28,13 +36,13 @@ function add($scheduleUserId,$scheduleStart,$scheduleEnd,$scheduleLocation,$sche
 	mysqli_close($mysqli);
 }
 
-function update()
+function update($scheduleId,$scheduleStart,$scheduleEnd,$scheduleLoc,$scheduleDesc,$scheduleUser)
 {
     global $mysqli;
-    $sql = "";
-    if (mysql_query($mysqli, $sql))
+    $sql = "UPDATE schedules SET schedule_start = '" . $scheduleStart . "', schedule_end = '" . $scheduleEnd . "', schedule_location = '" . $scheduleLoc . "', schedule_desc = '" . $scheduleDesc . "', schedule_iduser = '" . $scheduleUser . "' WHERE idschedule = '" . $scheduleId . "'";
+    if (mysqli_query($mysqli, $sql))
     {
-        echo "Successfully updated user on user id " . $id;
+        echo "Successfully updated schedule on schedule id " . $scheduleId;
     }
     else
     {
