@@ -97,7 +97,8 @@
 										<option value="Manager"<?php if($userPos=='Manager')echo " selected"?>>Manager</option>
 									</select>
 								</div>
-								<input type="submit" class="btn btn-primary" name="btnUpdate" value="Update">
+								<input type="submit" class="btn btn-primary" name="btnUpdate" value="Update User">
+								<input type="submit" class="btn btn-primary" name="btnDelete" value="Delete User">
 							</form>
 						</div>
 					</div>

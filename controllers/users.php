@@ -30,6 +30,11 @@ if(isset($_POST['btnUpdate']))
     }
 }
 
+if(isset($_POST['btnDelete']))
+{
+    deleteUser($_POST["id"]);
+}
+
 function addUser($name,$pwd,$pos)
   {
     global $mysqli;
@@ -61,4 +66,18 @@ function updateUser($name,$pwd,$pos,$id)
     mysqli_close($mysqli);
 }
 
+function deleteUser($id)
+{
+    global $mysqli;
+    $sql = "DELETE FROM users WHERE iduser = '" . $id . "'";
+    if (mysqli_query($mysqli, $sql))
+    {
+        echo "Successfully deleted user on user id " . $id;
+    }
+    else
+    {
+        echo "Error: " . $sql . "<br>" . mysqli_error($mysqli);
+    }
+    mysqli_close($mysqli);
+}
 ?>
