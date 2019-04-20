@@ -1,8 +1,13 @@
 <?php
 include '../conn.php';
-$username = strtolower($_POST["username"]);
-$password = $_POST["password"];
+require('../MagicCrypt.php');
+use org\magiclen\magiccrypt\MagicCrypt;
 
+$username = strtolower($_POST["username"]);
+$plainpass = $_POST["password"];
+$mc = new MagicCrypt('isa', 256);
+$cipherpass = $mc->encrypt($plainpass);
+$password = $cipherpass;
 
 global $mysqli;
 $sql = "select * from users where lower(user_name)='$username' and user_password='$password'";
