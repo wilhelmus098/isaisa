@@ -1,11 +1,15 @@
 <?php
 include '../conn.php';
-
+require('../MagicCrypt.php');
+use org\magiclen\magiccrypt\MagicCrypt;
 if(isset($_POST['btnRegister']))
 {
     if ($_POST["password"] === $_POST["password1"])
     {
-        addUser($_POST["username"],$_POST["password"],$_POST["position"]);
+        $plainpass = $_POST["password"];
+        $mc = new MagicCrypt('isa', 256);
+        $cipherpass = $mc->encrypt($plainpass);
+        addUser($_POST["username"],$cipherpass,$_POST["position"]);
     }
 }
 
