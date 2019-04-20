@@ -43,7 +43,7 @@
 				<li><a href="#">
 					<em class="fa fa-home"></em>
 				</a></li>
-				<li class="active">Create Contract</li>
+				<li class="active">Edit Contract</li>
 			</ol>
 		</div><!--/.row-->
 		
@@ -58,6 +58,7 @@
 							$idcontract = $_GET['idcontract'];
 							$sql = "select idcontract, contract_iduser, contract_start, contract_end, contract_value, user_name from contracts, users where idcontract='" . $idcontract . "' AND iduser = contract_iduser";
 							$result = mysqli_query($mysqli, $sql);
+							$contractId = "";
 							$contractIduser = "";
 							$contractStart = "";
 							$contractEnd = "";
@@ -66,6 +67,7 @@
 							{
 								while($row = $result->fetch_assoc())
 								{
+									$contractId = $row["idcontract"];
 									$contractIduser = $row["contract_iduser"];
 									$time = strtotime($row["contract_start"]);
 									$contractStart = date('Y-m-d',$time);
@@ -78,7 +80,7 @@
 							<form role="form" method="POST" action="controllers/contract.php">
 									<div class="form-group">
                                         <label>Contract ID</label>
-                                        <input class="form-control" placeholder="" name="contract_id" type="username" autofocus="" value="<?=$contractIduser?>">
+                                        <input class="form-control" placeholder="" name="contract_id" type="username" autofocus="" value="<?=$contractId?>">
 									</div>
 									<div class="form-group">
                                         <label>Contract User</label>
@@ -99,6 +101,7 @@
                                         <input type="text" class="form-control" name="contract_value" placeholder="" value="<?=$contractValue?>">
 									</div>
 									<button type="submit" class="btn btn-primary" name="edit_contract" >Update Contract</button>
+									<button type="submit" class="btn btn-primary" name="delete_contract" >Delete Contract</button>
 							</form>
 						</div>
 					</div>

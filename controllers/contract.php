@@ -13,6 +13,11 @@ if(isset($_POST['edit_contract']))
     update($_POST["contract_id"],$_POST["contract_user"],$_POST["contract_start"],$_POST["contract_end"],$_POST["contract_value"]);
 }
 
+if(isset($_POST['delete_contract']))
+{
+    delete($_POST['contract_id']);
+}
+
 function add($contractUserId,$contractStart,$contractEnd,$contractValue)
   {
     global $mysqli;
@@ -44,4 +49,18 @@ function update($contractId,$contractUserId,$contractStart,$contractEnd,$contrac
     mysqli_close($mysqli);
 }
 
+function delete($contractId)
+{
+    global $mysqli;
+    $sql = "DELETE FROM contracts WHERE idcontract = '" . $contractId . "'";
+    if (mysqli_query($mysqli, $sql))
+    {
+        echo "Successfully deleted contract on contract id " . $contractId;
+    }
+    else
+    {
+        echo "Error: " . $sql . "<br>" . mysqli_error($mysqli);
+    }
+    mysqli_close($mysqli);
+}
 ?>
