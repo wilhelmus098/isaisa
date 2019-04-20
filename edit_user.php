@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-	include 'conn.php';
+    include 'conn.php';
 	include 'checksession.php';
 ?>
 <html>
@@ -43,40 +43,54 @@
 				<li><a href="#">
 					<em class="fa fa-home"></em>
 				</a></li>
-				<li class="active">List Schedule</li>
+				<li class="active">Create User</li>
 			</ol>
 		</div><!--/.row-->
-		
 		
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="panel panel-default">
 					<div class="panel-body">
-						<div class="col-md-12">
-							<table class="table table-hover">
-								<thead>
-								  <tr>
-									<th>Username</th>
-									<th>Position</th>
-									<th></th>
-								  </tr>
-								</thead>
-								<tbody>
-								<?php
-									$sql = "select * from users";
-									$result = mysqli_query($mysqli, $sql);
-										// output data of each row
-								?>	
-								<?php while($row = $result->fetch_assoc()) { ?>
-									<tr>
-										<td><a href="http://localhost:8080/isaisa/edit_user.php?iduser=<?=$row["iduser"]?>"><?=$row["user_name"]?></a></td>
-										<td><?=$row["user_position"]?></td>
-										<td></td>
-									</tr>
-								<?php } ?>
-								  
-								</tbody>
-						  </table>
+							<div class="col-md-6">
+                            <?php
+							$iduser = $_GET['iduser'];
+							$sql = "select * from users where iduser='" . $iduser . "'";
+							$result = mysqli_query($mysqli, $sql);
+							$idUser1 = "";
+							$userName = "";
+							$userPass = "";
+							$userPos = "";
+							if ($result->num_rows > 0)
+							{
+								while($row = $result->fetch_assoc())
+								{
+									$idUser1 = $row["iduser"];
+									$userName = $row["user_name"];
+									$userPass = $row["user_password"];
+									$userPos = $row['user_position'];
+								}
+							}
+						    ?>
+							<form role="form" action="controllers/users.php" method="POST"> 
+								<div class="form-group">
+									<input class="form-control" placeholder="Username" name="username" type="username" autofocus="" value="<?=$userName?>">
+								</div>
+								<div class="form-group">
+									<input class="form-control" placeholder="Old Password" name="password" type="password" value="">
+								</div>
+								<div class="form-group">
+									<input class="form-control" placeholder="New Password" name="password1" type="password" value="">
+								</div>
+								<div class="form-group">
+									<label>Position</label>
+									<select class="form-control" name="position">
+										<option value="Admin"<?php if($userPos=='Admin')echo " selected"?>>Admin</option>
+										<option value="Actress"<?php if($userPos=='Actress')echo " selected"?>>Actress</option>
+										<option value="Manager"<?php if($userPos=='Manager')echo " selected"?>>Manager</option>
+									</select>
+								</div>
+								<input type="submit" class="btn btn-primary" name="btnRegister" value="Register">
+							</form>
 						</div>
 					</div>
 				</div><!-- /.panel-->
