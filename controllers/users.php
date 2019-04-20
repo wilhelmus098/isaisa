@@ -12,6 +12,23 @@ if(isset($_POST['btnRegister']))
         addUser($_POST["username"],$cipherpass,$_POST["position"]);
     }
 }
+if(isset($_POST['btnUpdate']))
+{
+    if ($_POST["password"] === $_POST["password1"] || $_POST["password"] === $_POST["password2"])
+    {
+        echo "password lama sama dengan password baru";
+    }
+    else
+    {
+        if ($_POST["password1"] === $_POST["password2"])
+        {
+            $plainpass = $_POST["password1"];
+            $mc = new MagicCrypt('isa', 256);
+            $cipherpass = $mc->encrypt($plainpass);
+            updateUser($_POST["username"],$cipherpass,$_POST["position"],$_POST["id"]);
+        }
+    }
+}
 
 function addUser($name,$pwd,$pos)
   {
@@ -33,7 +50,7 @@ function updateUser($name,$pwd,$pos,$id)
 {
     global $mysqli;
     $sql = "UPDATE users SET user_name ='" . $name . "', user_password = '" . $pwd . "', user_position = '" . $pos . "' WHERE iduser = '" . $id . "'";
-    if (mysql_query($mysqli, $sql))
+    if (mysqli_query($mysqli, $sql))
     {
         echo "Successfully updated user on user id " . $id;
     }

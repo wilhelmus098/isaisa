@@ -72,6 +72,11 @@
 							}
 						    ?>
 							<form role="form" action="controllers/users.php" method="POST"> 
+								<label>User ID</label>
+								<div class="form-group">
+									<input class="form-control" placeholder="Username" name="id" type="text" autofocus="" value="<?=$idUser1?>">
+								</div>
+								<label>User Name</label>
 								<div class="form-group">
 									<input class="form-control" placeholder="Username" name="username" type="username" autofocus="" value="<?=$userName?>">
 								</div>
@@ -82,6 +87,9 @@
 									<input class="form-control" placeholder="New Password" name="password1" type="password" value="">
 								</div>
 								<div class="form-group">
+									<input class="form-control" placeholder="Retype New Password" name="password2" type="password" value="">
+								</div>
+								<div class="form-group">
 									<label>Position</label>
 									<select class="form-control" name="position">
 										<option value="Admin"<?php if($userPos=='Admin')echo " selected"?>>Admin</option>
@@ -89,7 +97,7 @@
 										<option value="Manager"<?php if($userPos=='Manager')echo " selected"?>>Manager</option>
 									</select>
 								</div>
-								<input type="submit" class="btn btn-primary" name="btnRegister" value="Register">
+								<input type="submit" class="btn btn-primary" name="btnUpdate" value="Update">
 							</form>
 						</div>
 					</div>
