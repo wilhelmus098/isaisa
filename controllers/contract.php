@@ -8,6 +8,11 @@ if(isset($_POST['create_contract']))
    
 }
 
+if(isset($_POST['edit_contract']))
+{
+    update($_POST["contract_id"],$_POST["contract_user"],$_POST["contract_start"],$_POST["contract_end"],$_POST["contract_value"]);
+}
+
 function add($contractUserId,$contractStart,$contractEnd,$contractValue)
   {
     global $mysqli;
@@ -24,13 +29,13 @@ function add($contractUserId,$contractStart,$contractEnd,$contractValue)
     mysqli_close($mysqli);
   }
 
-function update()
+function update($contractId,$contractUserId,$contractStart,$contractEnd,$contractValue)
 {
     global $mysqli;
-    $sql = "";
-    if (mysql_query($mysqli, $sql))
+    $sql = "UPDATE contracts SET contract_iduser = '" . $contractUserId . "', contract_start = '" . $contractStart . "', contract_end = '" . $contractEnd . "', contract_value = '" . $contractValue . "' WHERE idcontract = '" . $contractId . "'";
+    if (mysqli_query($mysqli, $sql))
     {
-        echo "Successfully updated user on user id " . $id;
+        echo "Successfully updated contract on contract id " . $contractId;
     }
     else
     {

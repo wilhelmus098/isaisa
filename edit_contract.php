@@ -66,7 +66,7 @@
 							{
 								while($row = $result->fetch_assoc())
 								{
-									$contractIduser = $row["user_name"];
+									$contractIduser = $row["contract_iduser"];
 									$time = strtotime($row["contract_start"]);
 									$contractStart = date('Y-m-d',$time);
 									$time = strtotime($row["contract_end"]);
@@ -76,10 +76,13 @@
 							}
 						?>
 							<form role="form" method="POST" action="controllers/contract.php">
-							
+									<div class="form-group">
+                                        <label>Contract ID</label>
+                                        <input class="form-control" placeholder="" name="contract_id" type="username" autofocus="" value="<?=$contractIduser?>">
+									</div>
 									<div class="form-group">
                                         <label>Contract User</label>
-                                        <input class="form-control" placeholder="" name="username" type="username" autofocus="" value="<?=$contractIduser?>">
+                                        <input class="form-control" placeholder="" name="contract_user" type="username" autofocus="" value="<?=$contractIduser?>">
 									</div>
 									
 									<div class="form-group">
@@ -95,7 +98,7 @@
 										<label>Contract Value</label>
                                         <input type="text" class="form-control" name="contract_value" placeholder="" value="<?=$contractValue?>">
 									</div>
-									<button type="submit" class="btn btn-primary" name="create_contract" >Create Contract</button>
+									<button type="submit" class="btn btn-primary" name="edit_contract" >Update Contract</button>
 							</form>
 						</div>
 					</div>
