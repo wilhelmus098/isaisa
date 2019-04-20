@@ -71,7 +71,7 @@
 								?>	
 								<?php while($row = $result->fetch_assoc()) { ?>
 									<tr>
-										<td><?=$row["schedule_username"]?></td>
+										<td><a href="http://localhost:8080/isaisa/edit_schedule.php?idschedule=<?=$row["idschedule"]?>"><?=$row["schedule_username"]?></a></td>
 										<td><?=$row["schedule_start"]?></td>
 										<td><?=$row["schedule_end"]?></td>
 										<td><?=$row["schedule_location"]?></td>

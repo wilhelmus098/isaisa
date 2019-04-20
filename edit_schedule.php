@@ -21,7 +21,7 @@
 	<![endif]-->
 </head>
 <body>
-<?php
+	<?php
 	if($_SESSION['user_position'] == "Actress")
 	{
 		require_once('sidemenuartis.php');
@@ -43,59 +43,67 @@
 				<li><a href="#">
 					<em class="fa fa-home"></em>
 				</a></li>
-				<li class="active">Create Contract</li>
+				<li class="active">Create Schedule</li>
 			</ol>
 		</div><!--/.row-->
 		
 		
 		<div class="row">
 			<div class="col-lg-12">
-								
+				
+				
+				
 				<div class="panel panel-default">
 					<div class="panel-body">
 						<div class="col-md-6">
-						<?php
-							$idcontract = $_GET['idcontract'];
-							$sql = "select idcontract, contract_iduser, contract_start, contract_end, contract_value, user_name from contracts, users where idcontract='" . $idcontract . "' AND iduser = contract_iduser";
+                        <?php
+							$idschedules = $_GET['idschedule'];
+							$sql = "select idschedule, schedule_start, schedule_end, schedule_location, schedule_desc, schedule_iduser, user_name from schedules, users where idschedule='" . $idschedules . "' AND schedule_iduser = iduser";
 							$result = mysqli_query($mysqli, $sql);
-							$contractIduser = "";
-							$contractStart = "";
-							$contractEnd = "";
-							$contractValue = "";
+                            $scheduleStart = "";
+                            $scheduleEnd = "";
+                            $scheduleLoc = "";
+                            $scheduleDesc = "";
+                            $scheduleIduser = "";
+                            
 							if ($result->num_rows > 0)
 							{
 								while($row = $result->fetch_assoc())
 								{
-									$contractIduser = $row["user_name"];
-									$time = strtotime($row["contract_start"]);
-									$contractStart = date('Y-m-d',$time);
-									$time = strtotime($row["contract_end"]);
-									$contractEnd = date('Y-m-d',$time);
-									$contractValue = $row['contract_value'];
+                                    $time = strtotime($row["schedule_start"]);
+                                    $scheduleStart = date('Y-m-d\Th:i',$time);
+                                    $time1 = strtotime($row["schedule_end"]);
+                                    $scheduleEnd = date('Y-m-d\Th:i',$time1);
+                                    $scheduleLoc = $row["schedule_location"];
+                                    $scheduleDesc = $row["schedule_desc"];
+                                    $scheduleIduser = $row["user_name"];
 								}
 							}
 						?>
-							<form role="form" method="POST" action="controllers/contract.php">
-							
+							<form role="form" method="POST" action="controllers/schedule.php">
 									<div class="form-group">
-                                        <label>Contract User</label>
-                                        <input class="form-control" placeholder="" name="username" type="username" autofocus="" value="<?=$contractIduser?>">
+										<label>Schedule User</label>
+                                        <input class="form-control" placeholder="" name="username" type="username" autofocus="" value="<?=$scheduleIduser?>">
 									</div>
 									
 									<div class="form-group">
-										<label>Contract Start</label>
-                                        <input type="date" class="form-control" name="contract_start" placeholder="" value="<?=$contractStart?>">
+										<label>Schedule Start</label>
+										<input type="datetime-local" class="form-control" name="schedule_start" placeholder="" value="<?=$scheduleStart?>">
 									</div>
 									<div class="form-group">
-										<label>Contract End</label>
-                                        <input type="date" class="form-control" name="contract_end" placeholder="" value="<?=$contractEnd?>">
+										<label>Schedule End</label>
+										<input type="datetime-local" class="form-control" name="schedule_end" placeholder="" value="<?=$scheduleEnd?>">
 									</div>
-
 									<div class="form-group">
-										<label>Contract Value</label>
-                                        <input type="text" class="form-control" name="contract_value" placeholder="" value="<?=$contractValue?>">
+										<label>Schedule Location</label>
+										<input type="text" class="form-control" name="schedule_location" placeholder="" value="<?=$scheduleLoc?>">
 									</div>
-									<button type="submit" class="btn btn-primary" name="create_contract" >Create Contract</button>
+									<div class="form-group">
+										<label>Schedule Description</label>
+										<input type="text" class="form-control" name="schedule_desc" placeholder="" value="<?=$scheduleDesc?>">
+									</div>
+									
+									<button type="submit" class="btn btn-primary" name="create_schedule">Create Schedule</button>
 							</form>
 						</div>
 					</div>
