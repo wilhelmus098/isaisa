@@ -57,7 +57,7 @@ function updateUser($name,$pwd,$pos,$id)
     $sql = "UPDATE users SET user_name ='" . $name . "', user_password = '" . $pwd . "', user_position = '" . $pos . "' WHERE iduser = '" . $id . "'";
     if (mysqli_query($mysqli, $sql))
     {
-        echo "Successfully updated user on user id " . $id;
+        echo "Successfully updated user on user id " . $id." <a href=\"../list_user.php\">back to list user</a>";
     }
     else
     {
@@ -72,7 +72,7 @@ function deleteUser($id)
     $sql = "DELETE FROM users WHERE iduser = '" . $id . "'";
     if (mysqli_query($mysqli, $sql))
     {
-        echo "Successfully deleted user on user id " . $id;
+        echo "Successfully deleted user on user id " . $id." <a href=\"../list_user.php\">back to list user</a>";
     }
     else
     {

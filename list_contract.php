@@ -70,7 +70,7 @@
 								?>	
 								<?php while($row = $result->fetch_assoc()) { ?>
 									<tr>
-										<td><a href="http://localhost:8888/isaisa/edit_contract.php?idcontract=<?=$row["idcontract"]?>"><?=$row["contract_username"]?></a></td>
+										<td><a href="edit_contract.php?idcontract=<?=$row["idcontract"]?>"><?=$row["contract_username"]?></a></td>
 										<td><?=$row["contract_start"]?></td>
 										<td><?=$row["contract_end"]?></td>
 										<td><?=$row["contract_value"]?></td>

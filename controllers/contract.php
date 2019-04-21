@@ -40,7 +40,7 @@ function update($contractId,$contractUserId,$contractStart,$contractEnd,$contrac
     $sql = "UPDATE contracts SET contract_iduser = '" . $contractUserId . "', contract_start = '" . $contractStart . "', contract_end = '" . $contractEnd . "', contract_value = '" . $contractValue . "' WHERE idcontract = '" . $contractId . "'";
     if (mysqli_query($mysqli, $sql))
     {
-        echo "Successfully updated contract on contract id " . $contractId;
+        echo "Successfully updated contract on contract id " . $contractId." <a href=\"../list_contract.php\">back to list contracts</a>";
     }
     else
     {
@@ -55,7 +55,7 @@ function delete($contractId)
     $sql = "DELETE FROM contracts WHERE idcontract = '" . $contractId . "'";
     if (mysqli_query($mysqli, $sql))
     {
-        echo "Successfully deleted contract on contract id " . $contractId;
+        echo "Successfully deleted contract on contract id " . $contractId." <a href=\"../list_contract.php\">back to list contracts</a>";
     }
     else
     {

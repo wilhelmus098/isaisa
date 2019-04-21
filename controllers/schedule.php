@@ -47,7 +47,7 @@ function update($scheduleId,$scheduleStart,$scheduleEnd,$scheduleLoc,$scheduleDe
     $sql = "UPDATE schedules SET schedule_start = '" . $scheduleStart . "', schedule_end = '" . $scheduleEnd . "', schedule_location = '" . $scheduleLoc . "', schedule_desc = '" . $scheduleDesc . "', schedule_iduser = '" . $scheduleUser . "' WHERE idschedule = '" . $scheduleId . "'";
     if (mysqli_query($mysqli, $sql))
     {
-        echo "Successfully updated schedule on schedule id " . $scheduleId;
+        echo "Successfully updated schedule on schedule id " . $scheduleId." <a href=\"../list_schedule.php\">back to list schedule</a>";
     }
     else
     {
@@ -62,7 +62,7 @@ function delete($scheduleId)
     $sql = "DELETE FROM schedules WHERE idschedule = '" . $scheduleId . "'";
     if (mysqli_query($mysqli, $sql))
     {
-        echo "Successfully deleted schedule on schedule id " . $scheduleId;
+        echo "Successfully deleted schedule on schedule id " . $scheduleId." <a href=\"../list_schedule.php\">back to list schedule</a>";
     }
     else
     {

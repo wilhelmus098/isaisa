@@ -77,7 +77,7 @@
 									$plainloc = $mc->decrypt($cipherloc);
 									?>
 									<tr>
-										<td><a href="http://localhost:8888/isaisa/edit_schedule.php?idschedule=<?=$row["idschedule"]?>"><?=$row["schedule_username"]?></a></td>
+										<td><a href="edit_schedule.php?idschedule=<?=$row["idschedule"]?>"><?=$row["schedule_username"]?></a></td>
 										<td><?=$row["schedule_start"]?></td>
 										<td><?=$row["schedule_end"]?></td>
 										<td><?=$plainloc?></td>

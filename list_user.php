@@ -69,7 +69,7 @@
 								?>	
 								<?php while($row = $result->fetch_assoc()) { ?>
 									<tr>
-										<td><a href="http://localhost:8888/isaisa/edit_user.php?iduser=<?=$row["iduser"]?>"><?=$row["user_name"]?></a></td>
+										<td><a href="edit_user.php?iduser=<?=$row["iduser"]?>"><?=$row["user_name"]?></a></td>
 										<td><?=$row["user_position"]?></td>
 										<td></td>
 									</tr>
