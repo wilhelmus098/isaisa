@@ -77,7 +77,14 @@
 									$plainloc = $mc->decrypt($cipherloc);
 									?>
 									<tr>
-										<td><a href="edit_schedule.php?idschedule=<?=$row["idschedule"]?>"><?=$row["schedule_username"]?></a></td>
+										<?php if($_SESSION['user_position'] != "Actress"){ ?>
+											<td><a href="edit_schedule.php?idschedule=<?=$row["idschedule"]?>"><?=$row["schedule_username"]?></a></td>
+									<?php } else { ?>
+
+										<td><?=$row["schedule_username"]?></td>
+
+									<?php } ?>
+										
 										<td><?=$row["schedule_start"]?></td>
 										<td><?=$row["schedule_end"]?></td>
 										<td><?=$plainloc?></td>

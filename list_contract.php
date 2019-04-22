@@ -70,7 +70,13 @@
 								?>	
 								<?php while($row = $result->fetch_assoc()) { ?>
 									<tr>
+									<?php if($_SESSION['user_position'] != "Actress"){ ?>
 										<td><a href="edit_contract.php?idcontract=<?=$row["idcontract"]?>"><?=$row["contract_username"]?></a></td>
+									<?php } else { ?>
+
+										<td><?=$row["contract_username"]?></td>
+
+									<?php } ?>
 										<td><?=$row["contract_start"]?></td>
 										<td><?=$row["contract_end"]?></td>
 										<td><?=$row["contract_value"]?></td>
