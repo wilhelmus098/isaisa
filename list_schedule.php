@@ -52,7 +52,10 @@
 		
 		<div class="row">
 			<div class="col-lg-12">
-				<div class="panel panel-default">
+			<div class="text-center" style="margin: 8px;">
+				<button onclick='myFunction()'  class='btn btn-primary m-2' style="width:200px">Print</button>
+			</div>
+			<div class="panel panel-default"  id="section-to-print">
 					<div class="panel-body">
 						<div class="col-md-12">
 							<table class="table table-hover">
@@ -110,7 +113,16 @@
 	<script src="js/easypiechart-data.js"></script>
 	<script src="js/bootstrap-datepicker.js"></script>
 	<script src="js/custom.js"></script>
-	
+	<script>
+        function myFunction() {
+            var printContents = document.getElementById("section-to-print").innerHTML;
+            var originalContents = document.body.innerHTML;
+            document.body.innerHTML = printContents;
+            window.print();
+            document.body.innerHTML = originalContents;
+            return true;
+        }
+    </script>
 		
 </body>
 </html>
